@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+    display: none
+}
+
+html {
+    font-size: 62.5%
+}
+
+body {
+    position: relative;
+    margin: 0;
+    font-family: 'IBM Plex Sans';
+    font-size: 1.5em;
+    line-height: 1;
+}
+body.light-mode { background: #eee }
+body.dark-mode { background: #222 }
+
+a { text-decoration: none }
+.light-mode a { color: #222 }
+.light-mode a:hover { color: #000 }
+.dark-mode a { color: #eee }
+.dark-mode a:hover { color: #fff }
+
+header,
+footer {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 6.4rem;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav li {
+    margin: 0 1.2rem;
+    display: inline-block;
+}
+
+.nav button {
+    padding: 0.6rem 1.2rem;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.6rem;
+    color: #ddd;
+    background: transparent;
+    font-family: 'IBM Plex Sans';
+    cursor: pointer;
+}
+
+.nav button {
+    border-color: #fff;
+    color: #fff;
+}
+
+.light-mode header, .light-mode footer { background: #222 }
+.light-mode header *, .light-mode footer * { color: #fff }
+
+.dark-mode header, .dark-mode footer { background: #000 }
+.dark-mode header *, .dark-mode footer * { color: #eee }
+
+header a:hover,
+footer a:hover { color: greenyellow !important }
+
+header { 
+    top: 0;
+    justify-content: space-between;
+}
+
+h1 {
+    color: #fff;
+    font-family: 'IBM Plex Sans Condensed';
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+footer {
+    bottom: 0;
+    justify-content: flex-end;
+}
+
+main {
+    width: 100%;
+    padding: 8rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main > * {
+    width: 85%;
+    max-width: 80rem;
+}
+
+.page-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h4 {
+    font-family: 'IBM Plex Sans Condensed';
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.page-list span {
+    font-family: 'IBM Plex Sans';
+    font-size: 1.4rem;
+    font-weight: 200;
+}
+
+.display-list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+}
+
+.list-mid-4 {
+    grid-template-columns: 3.2rem 1fr 3.2rem 3.2rem;
+}

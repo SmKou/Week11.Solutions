@@ -4,20 +4,38 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;700&family=IBM+Plex+Sans:wght@200;400;700&display=swap" rel="stylesheet">
     <title>The Doctor Office</title>
-    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/styles.css">
   </head>
-  <body>
+  <body class="light-mode">
     <header>
         <h1>Doctor Office</h1>
         <ul class="nav">
-            <li>Departments</li>
-            <li>Providers</li>
-            <li>@Html.ActionLink("Doctors", "Index", "Home")</li>
-            <li>Appointments</li>
+            <li>@Html.ActionLink("Departments", "Index", "Departments")</li>
+            <li>@Html.ActionLink("Appointments", "Index", "Home")</li>
+            <li><button id="toggle-mode">Switch to Dark Mode</button></li>
         </ul>
     </header>
-    <hr>
     @RenderBody()
+    <footer>
+        <ul class="nav">
+            <li>@Html.ActionLink("Doctors", "Index", "Doctors")</li>
+            <li>@Html.ActionLink("Patients", "Index", "Patients")</li>
+            <li>@Html.ActionLink("Providers", "Index", "Providers")</li>
+        </ul>
+    </footer>
+
+    <script>
+        const toggle = document.querySelector('#toggle-mode');
+        let isLightMode = true;
+        toggle.addEventListener('click', () => {
+            isLightMode = !isLightMode;
+            document.querySelector('body').setAttribute('class', isLightMode ? 'light-mode' : 'dark-mode');
+            toggle.innerHTML = isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode';
+        })
+    </script>
   </body>
 </html>
