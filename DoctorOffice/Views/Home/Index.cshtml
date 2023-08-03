@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+
+<main>
+    <div class="page-list">
+        <h4>Appointments</h4>
+        <span>@Html.ActionLink("Add Appointment", "Create", "Appointments")</span>
+    </div>
+    <section>
+        @if (@Model.Count == 0)
+        {
+            <p>No appointments yet.</p>
+        }
+        else
+        {
+            <ul class="display-list">
+                @foreach (Appointment appt in Model)
+                {
+                    <li>
+                        <span>@Html.ActionLink($"Fl. {appt.Location.Floor} Rm. {appt.Location.Room}", "Index", "Departments")</span>
+                        <span>@Html.ActionLink(@appt.Patient.PatientName, "Details", "Patients", new { id = appt.Patient.PatientId })</span>
+                        <span>
+                        <span>@appt.AppointmentDate</span>
+                        <span>@appt.AppointmentTime</span>
+                        <span>@Html.ActionLink("View", "Details", "Appointments", new { id = @appt.AppointmentId })</span>
+                    </li>
+                }
+            </ul>
+        }
+    </section>
+</main>
