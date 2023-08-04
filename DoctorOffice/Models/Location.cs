@@ -11,6 +11,7 @@ public class Location
     public int Floor { get; set; }
     [Required, Range(1, 100)]
     public int Room { get; set; }
+    public string FloorRoom { get; set; }
     
     public int DepartmentId { get; set; }
     public Department Department { get; set; }

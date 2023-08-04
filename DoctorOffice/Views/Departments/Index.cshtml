@@ -1,0 +1,65 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+
+<main>
+    <div class="page-list">
+        <h3>Departments</h3>
+        <span>@Html.ActionLink("Add Department", "Create")</span>
+    </div>
+    <section>
+        @if (@Model["Departments"].Count == 0)
+        {
+            <p>No departments have been added yet.</p>
+        }
+        <ul class="display-list">
+            @foreach (Department dpt in Model["Departments"])
+            {
+                <li>
+                    <span>@Html.ActionLink(@dpt.DepartmentName, "Details", new { id = @dpt.DepartmentId })</span>
+                    <span>@Html.ActionLink("Edit", "Edit")</span>
+                    <span>@Html.ActionLink("Delete", "Delete")</span>
+                </li>
+            }
+        </ul>
+    </section>
+    <section>
+        <div class="page-list">
+            <h4>Locations</h4>
+            <span>@Html.ActionLink("Add Location", "Create", "Locations")</span>
+        </div>
+        @if (@Model["Locations"].Count == 0)
+        {
+            <p>No locations have been added yet.</p>
+        }
+        <ul class="display-list">
+            @foreach (Location location in Model["Locations"])
+            {
+                <li>
+                    <span>@location.FloorRoom</span>
+                    <span>@Html.ActionLink("Edit", "Edit", "Locations", new { id = @location.LocationId })</span>
+                    <span>@Html.ActionLink("Delete", "Delete", "Locations", new { id = @location.LocationId })</span>
+                </li>
+            }
+        </ul>
+    </section>
+    <section>
+        <div class="page-list">
+            <h4>Specialties</h4>
+            <span>@Html.ActionLink("Add Specialty", "Create", "Specialties")</span>
+        </div>
+        @if (@Model["Specialties"].Count == 0)
+        {
+            <p>No specialties have been added yet.</p>
+        }
+        <ul class="display-list">
+            @foreach (Specialty specialty in Model["Specialties"])
+            {
+                <span>@specialty.SpecialtyName</span>
+                <span>@Html.ActionLink("Edit", "Edit", "Specialties", new { id = @specialty.SpecialtyId })</span>
+                <span>@Html.ActionLink("Delete", "Delete", "Specialties", new { id = @specialty.SpecialtyId })</span>
+            }
+        </ul>
+    </section>
+</main>

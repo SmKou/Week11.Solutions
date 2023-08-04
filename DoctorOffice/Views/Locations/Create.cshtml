@@ -1,0 +1,40 @@
+@{
+    Layout = "_Layout";
+}
+@model DoctorOffice.Models.Location
+
+<main>
+    <div class="page-list">
+        <h3>Add Location</h3>
+    </div>
+    <section>
+        <p>@Html.ValidationMessageFor(model => model.LocationType)</p>
+        <p>@Html.ValidationMessageFor(model => model.Floor, "Specify a valid floor of the office.")</p>
+        <p>@Html.ValidationMessageFor(model => model.Room, "Specify a valid room number.")</p>
+        
+        @using (Html.BeginForm())
+        {
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Department)
+                @Html.DropDownList("DepartmentId")
+            </div>
+
+            <div class="form-entry">
+                @Html.Label("LocationType", "Type of Room")
+                @Html.TextBoxFor(model => model.LocationType)
+            </div>
+            
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Floor)
+                @Html.EditorFor(model => model.Floor)
+            </div>
+
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Room)
+                @Html.EditorFor(model => model.Room)
+            </div>
+            
+            <input type="submit" value="Add Location" />
+        }
+    </section>
+</main>

@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+@model DoctorOffice.Models.Specialty
+
+<main>
+    <div class="page-list">
+        <h3>Add Specialty</h3>
+    </div>
+    <section>
+        <p>@Html.ValidationMessageFor(model => model.SpecialtyName)</p>
+        @using (Html.BeginForm())
+        {
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Department)
+                @Html.DropDownList("DepartmentId")
+            </div>
+
+            <div class="form-entry">
+                @Html.Label("SpecialtyName", "Name of Specialty")
+                @Html.TextBoxFor(model => model.SpecialtyName)
+            </div>
+
+            <input type="submit" value="Add Specialty" />
+        }
+    </section>
+</main>

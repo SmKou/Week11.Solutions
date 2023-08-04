@@ -1,0 +1,41 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+@model DoctorOffice.Models.DptLocSpec
+
+<main>
+    <div class="page-list">
+        <h3>Department: @Model.Dpt.DepartmentName</h3>
+    </div>
+    <section></section>
+    <section>
+        @using (Html.BeginForm("AddLocation"))
+        {
+            @Html.HiddenFor(model => model.Dpt.DepartmentId)
+            <div class="form-entry">
+                @Html.Label("Loc", "Location")
+                @Html.EditorFor(model => model.Loc.Floor)
+                @Html.EditorFor(model => model.Loc.Room)
+            </div>
+            <input type="submit" value="Add Location" />
+        }
+        <ul class="display-list">
+            @foreach (Location location in @Model.Dpt.Locations)
+            {
+                <li>@location.FloorRoom</li>
+            }
+        </ul>
+    </section>
+    <section>
+        @using (Html.BeginForm("AddSpecialty"))
+        {
+            @Html.HiddenFor(model => model.Dpt.DepartmentId)
+            <div class="form-entry">
+                @Html.Label("Spec", "Specialty")
+                @Html.TextBoxFor(model => model.Spec.SpecialtyName)
+            </div>
+            <input type="submit" value="Add Specialty" />
+        }
+    </section>
+</main>

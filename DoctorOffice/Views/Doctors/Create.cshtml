@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+@model DoctorOffice.Models.Doctor
+
+<main>
+    <div class="page-list">
+        <h3>Add Doctor</h3>
+    </div>
+    <section>
+        @using (Html.BeginForm())
+        {
+            <div class="form-entry">
+                @Html.Label("DoctorName", "Name");
+                @Html.TextBoxFor(model => model.DoctorName)
+            </div>
+            <div class="form-entry">
+                @Html.CheckBoxFor(model => model.IsFullTime)
+                @Html.Label("IsFullTime", "Full time")
+            </div>
+            <div class="form-entry">
+                @Html.CheckBoxFor(model => model.IsHeadStaff)
+                @Html.Label("IsHeadStaff", "Head staff")
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Location)
+                @Html.DropDownList("LocationId");
+            </div>
+            <input type="submit" value="Add Doctor" />
+        }
+    </section>
+</main>

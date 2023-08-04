@@ -1,0 +1,21 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+@model DoctorOffice.Models.Department
+
+<main>
+    <div class="page-list">
+        <h3>Add Department</h3>
+    </div>
+    <section>
+        <p>@Html.ValidationMessageFor(model => model.DepartmentName)</p>
+        @using (Html.BeginForm())
+        {
+            @Html.Label("DepartmentName", "Name of Department");
+            @Html.TextBoxFor(model => model.DepartmentName)
+
+            <input type="submit" value="Add Department" />
+        }
+    </section>
+</main>
