@@ -1,0 +1,36 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+@model DoctorOffice.Models.Doctor
+
+<main>
+    <div class="page-list">
+        <h3>Doctor: @Model.DoctorName</h3>
+        <span>@Html.ActionLink("Edit", "Edit", new { id = @Model.DoctorId })</span>
+    </div>
+    <section>
+        
+        @if (@Model.Specialties.Count == 0)
+        {
+            <p>This doctor has not added specialties yet.</p>
+        }
+        else
+        {
+            <ul class="display-list">
+                @foreach (DoctorSpecialty ds in Model.DoctorSpecialties)
+                {
+                    <li>
+                        <span>@Html.ActionLink(@ds.Specialty.SpecialtyName)</span>
+                        <span>@Html.ActionLink("Edit", "Edit", new { id = @ds.Specialty.SpecialtyId })</span>
+                        <span>@Html.ActionLink("Delete", "DeleteSpecialty", new {})</span>
+                    </li>
+                }
+            </ul>
+        }
+        @using (Html.BeginForm("AddSpecialty"))
+        {
+
+        }
+    </section>
+</main>

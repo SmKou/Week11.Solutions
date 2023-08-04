@@ -48,9 +48,16 @@ public class DoctorsController : Controller
         return RedirectToAction("Index");
     }
 
-    /*
     public ActionResult Details(int id)
-    {}
+    {
+        Doctor doctor = _db.Doctors
+            .Include(doc => doc.DoctorSpecialties)
+            .ThenInclude(join => join.Specialty)
+            .Include(doc => doc.DoctorPatients)
+            .ThenInclude(join => join.Patient)
+            .FirstOrDefault(doc => doc.DoctorId == id);
+        return View(doctor);
+    }
 
     public ActionResult AddPatient(Doctor doctor, int patientId)
     {}
@@ -72,5 +79,24 @@ public class DoctorsController : Controller
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
-    */
+
+    public ActionResult DeletePatient(int id)
+    {
+        DoctorPatient doctorPatient = _db.DoctorPatients
+            .FirstOrDefault(dp => dp.DoctorPatientId == id);
+        int dId = doctorPatient.DoctorId;
+        _db.DoctorPatients.Remove(doctorPatient);
+        _db.SaveChanges();
+        return RedirectToAction("Details", new { id = dId })
+    }
+
+    public ActionResult DeleteSpecialty(int id)
+    {
+        DoctorSpecialty doctorSpecialty = _db.DoctorSpecialties
+            .FirstOrDefault(ds => ds.DoctorSpecialtyId == id);
+        int dId = doctorSpecialty.DoctorId;
+        _db.DoctorSpecialties.Remove(doctorSpecialty);
+        _db.SaveChanges();
+        return RedirectToAction("Details", new { id = dId });
+    }
 }

@@ -17,6 +17,7 @@
             @foreach (Doctor doctor in Model)
             {
                 <li>
+                    <span>@doctor.Location.FloorRoom</span>
                     <span>@Html.ActionLink(@doctor.DoctorName, "Details", new { id = @doctor.DoctorId })</span>
                     <span>@Html.ActionLink("Edit", "Edit")</span>
                     <span>@Html.ActionLink("Delete", "Delete")</span>

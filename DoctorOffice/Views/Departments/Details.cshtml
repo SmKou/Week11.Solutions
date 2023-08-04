@@ -7,8 +7,16 @@
 <main>
     <div class="page-list">
         <h3>Department: @Model.Dpt.DepartmentName</h3>
+        <span>@Html.ActionLink("Delete", "Delete", new { id = @Model.Dpt.DepartmentId })</span>
     </div>
-    <section></section>
+    <section>
+        @using (Html.BeginForm("Edit", FormMethod.Post))
+        {
+            <div class="form-entry">
+                @Html.Label("Department")
+            </div>
+        }
+    </section>
     <section>
         @using (Html.BeginForm("AddLocation"))
         {
@@ -23,7 +31,12 @@
         <ul class="display-list">
             @foreach (Location location in @Model.Dpt.Locations)
             {
-                <li>@location.FloorRoom</li>
+                <li>
+                    <span>@location.LocationType</span>
+                    <span>@location.FloorRoom</span>
+                    <span>@Html.ActionLink("Edit", "Edit", new { id = @location.LocationId })</span>
+                    <span>@Html.ActionLink("Delete", "Delete", new { id = @location.LocationId })</span>
+                </li>
             }
         </ul>
     </section>
@@ -37,5 +50,13 @@
             </div>
             <input type="submit" value="Add Specialty" />
         }
+        <ul class="display-list">
+            @foreach (Specialty specialty in @Model.Dpt.Specialties)
+            {
+                <li>
+                    <span>@specialty.SpecialtyName</span>
+                </li>
+            }
+        </ul>
     </section>
 </main>
