@@ -23,6 +23,8 @@ public class Program
         );
         WebApplication app = builder.Build();
 
+        DataInitializer.Init(app);
+
         // app.UseDeveloperExceptionPage();
         app.UseHttpsRedirection();
         app.UseStaticFiles();

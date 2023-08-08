@@ -1,0 +1,64 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+@model DoctorOffice.Models.Doctor
+
+<main>
+    <div class="page-list">
+        <h4>Add Doctor</h4>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="form-entry">
+            @Html.Label("FirstName", "First Name")
+            @Html.TextBoxFor(model => model.FirstName)
+        </div>
+        <div class="form-entry">
+            @Html.Label("MiddleName", "Middle Name")
+            @Html.TextBoxFor(model => model.MiddleName)
+        </div>
+        <div class="form-entry">
+            @Html.Label("LastName", "Last Name")
+            @Html.TextBoxFor(model => model.LastName)
+        </div>
+        <div class="form-entry">
+            @Html.Label("PreferredName", "Preferred Name")
+            @Html.TextBoxFor(model => model.PreferredName)
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsOnResidence)
+            @Html.Label("IsOnResidence", "On residence")
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsOnInternship)
+            @Html.Label("IsOnInternship", "On internship")
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsResearchFellow)
+            @Html.Label("IsResearchFellow", "Research fellow")
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsFullTime)
+            @Html.Label("IsFullTime", "Full time")
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsClinicStaff)
+            @Html.Label("IsClinicStaff", "Clinic staff")
+        </div>
+        <div class="form-entry">
+            @Html.CheckBoxFor(model => model.IsHeadStaff)
+            @Html.Label("IsHeadStaff", "Head staff")
+        </div>
+        <div class="form-entry">
+            @Html.LabelFor(model => model.Provider)
+            @Html.DropDownList("ProviderId");
+        </div>
+        <div class="form-entry">
+            @Html.Label("LocationId", "Office room")
+            @Html.DropDownList("LocationId")
+        </div>
+
+        <input type="submit" value="Add Doctor" />
+    }
+</main>

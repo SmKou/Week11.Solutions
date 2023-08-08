@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+
+<main>
+    <div class="page-list">
+        <h4>Doctors</h4>
+        <span>@Html.ActionLink("Add Doctor", "Create")</span>
+    </div>
+    @if (@Model.Count == 0)
+    {
+        <p>No doctors have been added yet.</p>
+    }
+    <ul class="display-list list-left-3">
+        @foreach (Doctor doctor in Model)
+        {
+            string preferred = doctor.PreferredName != null ? 
+                "(" + doctor.PreferredName + ")" : "";
+                
+            <li>
+                <span>@Html.ActionLink($"{doctor.FirstName} {doctor.LastName} {preferred}", "Details", "Doctors", new { id = @doctor.DoctorId })</span>
+                <span>@Html.ActionLink("Edit", "Edit", "Doctors", new { id = @doctor.DoctorId })</span>
+                <span>@Html.ActionLink("Delete", "Delete", "Doctors", new { id = @doctor.DoctorId })</span>
+            </li>
+        }
+    </ul>
+</main>

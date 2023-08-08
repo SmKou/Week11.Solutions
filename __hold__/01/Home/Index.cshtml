@@ -1,0 +1,36 @@
+@{
+    Layout = "_Layout";
+}
+@using DoctorOffice.Models;
+
+<main>
+    <div class="page-list">
+        <h4>Appointments</h4>
+        <span>@Html.ActionLink("Add Appointment", "Create", "Appointments")</span>
+    </div>
+    @if (@Model.Count == 0)
+    {
+        <p>No appointments yet.</p>
+    }
+    else
+    {
+        <ul class="display-list list-mid-4">
+            @foreach (Appointment appt in Model)
+            {
+                string preferred = appt.Patient.PreferredName != null ? 
+                    "(" + appt.Patient.PreferredName + ")" : "";
+                string[] dateTime = appt.AppointmentTime
+                    .ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss").Split("T");
+                string payStatus = appt.IsBillPaid ? 
+                    "green-paid" : "red-unpaid";
+
+                <li class="@payStatus">
+                    <span>@Html.ActionLink($"{appt.Location.RoomNo}", "Index", "Departments")</span>
+                    <span>@Html.ActionLink($"{appt.Patient.FirstName} {appt.Patient.LastName} {preferred}", "Index", "Patients")</span>
+                    <span>@dateTime[0]</span>
+                    <span>@dateTime[1]</span>
+                </li>
+            }
+        </ul>
+    }
+</main>
